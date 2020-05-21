@@ -2,24 +2,26 @@
 
 // Part 1
 
+
 $('#get-fortune-button').on('click', () => {
-  $.get('/replaceMe', (response) => {
-    //
+  $.get('/fortune', (response) => {
+
     // This is the body of the callback function for $.get!
     // TODO: use `response` to update the text in `div#fortune-text`
-    //
+    $('#fortune-text').html(response)
+
   });
 });
 
 
 // Part 2
-
+// Event listener, called weather-form, listens for submit events 
 $('#weather-form').on('submit', (evt) => {
   evt.preventDefault();
 
   const formData = {
     // TODO: select the zipcode input
-    zipcode: $('REPLACE THIS').val()
+    zipcode: $('#zipcode-field').val()
   };
 
   // TODO: choose a request method (GET or POST) by uncommenting one of
@@ -29,9 +31,9 @@ $('#weather-form').on('submit', (evt) => {
   //   // Fill in the callback function
   // });
 
-  // $.post('/replaceMe', formData, (response) => {
-  //   // Fill in the callback function
-  // });
+  $.get('/weather', formData, (response) => {
+    $('#weather-info').html(response.forecast);
+  });
 });
 
 
